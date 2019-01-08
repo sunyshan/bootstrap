@@ -1,0 +1,12 @@
+{{- $lang := .Get 0 -}}
+{{- $input := .Inner -}}
+
+<div class="bd-example">
+{{- $input -}}
+</div>
+
+{{- $input_filtered := (replaceRE `<svg (class="bd-placeholder-img[\s\w-]+")[\w\W]+</svg>\n` `<img src="..." $1 alt="...">` $input) -}}
+{{- $input_filtered := (replaceRE `class="(bd-placeholder-img(-lg )? ?)*` `class="` $input_filtered) -}}
+{{- $input_filtered := (replace $input_filtered ` class=""` "") -}}
+
+{{ highlight $input_filtered $lang "" }}
