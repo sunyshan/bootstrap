@@ -1,16 +1,11 @@
----
-layout: simple
-title: Versions
-description: An appendix of hosted documentation for nearly every release of Bootstrap, from v1 through v4.
----
-
 <div class="row">
-{{ range $i, $release := .Site.Data.apps.app }}
+{{ range $i, $release := .Site.Data.docs_versions }}
   <div class="col-md">
     <h2>{{ $release.group }}</h2>
     <p>{{ $release.description }}</p>
-    {{ range $j, $version := $release.versions }}
-      {{ $len := len $release.versions }}
+    {{ $versions := sort $release.versions "v" "desc" }}
+    {{ range $j, $version := $versions }}
+      {{ $len := len $versions }}
       {{ if (eq $j 0) }}<div class="list-group">{{ end }}
         {{ if (eq $version.v $.Site.Params.docs_version) }}
           <a class="list-group-item list-group-item-action py-2 text-primary d-flex justify-content-between align-items-center" href="{{ $release.baseurl }}/{{ $version.v }}/">
