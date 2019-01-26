@@ -1,5 +1,5 @@
 {{ range $i, $entry := .Site.Data.examples }}
-  <h2>{{ $entry.category | title }}</h2>
+  <h2>{{ $entry.category }}</h2>
   <p>{{ $entry.description }}</p>
     {{ range $j, $example := $entry.examples }}
       {{ $len := len $entry.examples }}
